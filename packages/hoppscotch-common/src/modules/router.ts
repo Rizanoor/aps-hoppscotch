@@ -43,7 +43,7 @@ export const isLoadingInitialRoute = readonly(_isLoadingInitialRoute)
 export default <HoppModule>{
   onVueAppInit(app) {
     const router = createRouter({
-      history: createWebHistory(),
+      history: createWebHistory("/hoppscotch/"),
       routes,
     })
 
