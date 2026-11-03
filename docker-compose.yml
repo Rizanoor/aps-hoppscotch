@@ -8,6 +8,7 @@ services:
       dockerfile: prod.Dockerfile
       context: .
       target: aio
+      network: host
     env_file:
       - ./.env
     depends_on:
@@ -26,6 +27,7 @@ services:
       dockerfile: prod.Dockerfile
       context: .
       target: aio
+      network: host
     env_file:
       - ./.env
     networks:
@@ -75,6 +77,7 @@ services:
       dockerfile: prod.Dockerfile
       context: .
       target: backend
+      network: host
     env_file:
       - ./.env
     depends_on:
@@ -109,6 +112,7 @@ services:
       dockerfile: prod.Dockerfile
       context: .
       target: backend
+      network: host
     env_file:
       - ./.env
     restart: always
@@ -131,6 +135,7 @@ services:
       dockerfile: prod.Dockerfile
       context: .
       target: app
+      network: host
     env_file:
       - ./.env
     depends_on:
@@ -146,6 +151,7 @@ services:
       dockerfile: prod.Dockerfile
       context: .
       target: sh_admin
+      network: host
     env_file:
       - ./.env
     depends_on:
