@@ -4,11 +4,7 @@ services:
     profiles: ["default"]
     container_name: hoppscotch
     restart: unless-stopped
-    build:
-      dockerfile: prod.Dockerfile
-      context: .
-      target: aio
-      network: host
+    image: hoppscotch/hoppscotch:latest
     env_file:
       - ./.env
     depends_on:
@@ -23,11 +19,7 @@ services:
     profiles: ["default-no-db"]
     container_name: hoppscotch
     restart: unless-stopped
-    build:
-      dockerfile: prod.Dockerfile
-      context: .
-      target: aio
-      network: host
+    image: hoppscotch/hoppscotch:latest
     env_file:
       - ./.env
     networks:
@@ -73,17 +65,14 @@ services:
   # Auto-migration service - handles database migrations automatically
   hoppscotch-migrate:
     profiles: ["default", "just-backend", "backend", "app", "admin"]
-    build:
-      dockerfile: prod.Dockerfile
-      context: .
-      target: backend
-      network: host
+    image: hoppscotch/hoppscotch:latest
     env_file:
       - ./.env
     depends_on:
       hoppscotch-db:
         condition: service_healthy
-    command: sh -c "pnpm exec prisma migrate deploy"
+    entrypoint: ["sh", "-c", "npx prisma migrate deploy"]
+    working_dir: /dist/backend
     networks:
       - default
 
