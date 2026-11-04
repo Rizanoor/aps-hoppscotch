@@ -4,11 +4,7 @@ services:
     profiles: ["default"]
     container_name: hoppscotch
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: prod.Dockerfile
-      target: aio
-      network: host
+    image: hoppscotch/hoppscotch:latest
     env_file:
       - ./.env
     depends_on:
